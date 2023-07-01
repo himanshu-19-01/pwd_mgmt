@@ -1,0 +1,54 @@
+ {%extends "base.html"%}
+{% block title %} Sign up {% endblock title %}
+{% block body %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #f8f9fa;">
+  <div class="col-md-6">
+    <div class="card" style="max-width: 450px; margin: 0 auto;">
+      <div class="card-header text-primary text-center">
+        <h2 class="font-weight-bold">Create Account</h2>
+        {%if msg%}
+        <p class="text-success text-center">{{msg}}</p>
+        {%endif%}
+      </div>
+      <div class="card-body">
+        <form onsubmit="return validatePassword()" action="/newuser" method='post'>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="himanshu manral" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="12@website" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="12@website" required>
+            <small id="password-error" class="form-text text-danger" style="display: none;">Passwords do not match.</small>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="mysite123@gmail.com" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Create Account</button>
+          <hr>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function validatePassword() {
+  var password = document.getElementById("password").value;
+  var confirmPassword = document.getElementById("confirm-password").value;
+  var passwordError = document.getElementById("password-error");
+  
+  if (password !== confirmPassword) {
+    passwordError.style.display = "block";
+    return false;
+  }
+  
+  return true;
+}
+</script>
+{% endblock body %}

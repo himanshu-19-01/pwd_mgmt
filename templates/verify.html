@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Verify{% endblock title %}
+{% block body %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #f8f9fa;">
+  <div class="col-md-6">
+    <p style="text-align:center;">An OTP has been sent to your email. Please enter the OTP below</p>
+    <div class="card" style="max-width: 450px; margin: 0 auto;">
+      <div class="card-header text-primary text-center">
+        <h2 class="font-weight-bold">Verify Email</h2>
+        {% if error_msg %}
+        <p class="text-danger text-center"><strong>{{ error_msg }}</strong></p>
+        {% endif %}
+        <div id="timer" class="text-center"></div>
+      </div>
+      <div class="card-body">
+        <form action="/verify_email" method="post">
+          <div class="form-group">
+            <label for="otp">Enter Your OTP:</label>
+            <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter your one-time password" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Verify</button>
+          <hr>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var countdown = 59;
+  var timer = document.getElementById('timer');
+
+  function updateTimer() {
+    if (countdown >= 0) {
+      var minutes = Math.floor(countdown / 60);
+      var seconds = countdown % 60;
+
+      // Add leading zero if necessary
+      var minutesFormatted = minutes < 10 ? '0' + minutes : minutes;
+      var secondsFormatted = seconds < 10 ? '0' + seconds : seconds;
+
+      timer.innerText = minutesFormatted + ':' + secondsFormatted;
+
+      if (countdown === 0) {
+        timer.style.color = 'red';
+      }
+
+      countdown--;
+      setTimeout(updateTimer, 1000);
+    }
+  }
+
+  updateTimer();
+</script>
+{% endblock %}

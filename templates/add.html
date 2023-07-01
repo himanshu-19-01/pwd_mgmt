@@ -1,0 +1,73 @@
+{% extends "portfolio.html" %}
+{% block title %}Add to Password Manager{% endblock title %}
+{% block body %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #f8f9fa;">
+  <div class="col-md-6">
+    <div class="card" style="max-width: 450px; margin: 0 auto;">
+      <div class="card-header text-primary text-center">
+        <h2 class="font-weight-bold">Add to Password Manager</h2>
+        {% if msg %}
+        <p class="text-success text-center">{{ msg }}</p>
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <form onsubmit="return validatePassword()" action="/Add_new" method="post">
+          <div class="form-group">
+            <label for="website_name">Website Name:</label>
+            <input type="url" class="form-control" id="web" name="web" placeholder="https://www.facebook.com/" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="mysite123@gmail.com" required>
+          </div>
+          {% if passw %}
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" value="{{ passw }}" placeholder="123@facebook" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="text" class="form-control" id="confirm-password" name="confirm-password" value="{{ passw }}" placeholder="12@website" required>
+            <small id="password-error" class="form-text text-danger" style="display: none;">Passwords do not match.</small>
+          </div>
+          {% else %}
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="123@facebook" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="12@website" required>
+            <small id="password-error" class="form-text text-danger" style="display: none;">Passwords do not match.</small>
+          </div>
+          {% endif %}
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-success btn-block" type="submit">Add</button>
+            </div>
+            <div class="col">
+              <a class="btn btn-success btn-block" href="/gen">Gen Password</a>
+            </div>
+          </div>
+          <hr>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function validatePassword() {
+  var password = document.getElementById("password").value;
+  var confirmPassword = document.getElementById("confirm-password").value;
+  var passwordError = document.getElementById("password-error");
+  
+  if (password !== confirmPassword) {
+    passwordError.style.display = "block";
+    return false;
+  }
+  
+  return true;
+}
+</script>
+{% endblock body %}

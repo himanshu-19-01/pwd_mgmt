@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}My Portfolio{% endblock title %}
+{% block body %}
+<h1 style="text-align:Center">My Portfolio</h1>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card12" style="width: 300px; border-radius: 10px; border: 5px solid blue;">
+    <img src="static\istockphoto-1299455015-612x612.jpg" class="card-img-top" alt="Card Image">
+    <div class="card-body">
+      <h5 class="card-title">Password Manager</h5>
+      <p class="card-text">All the saved passwords are here...  
+      </p>
+      <a href="/my_passw" class="btn btn-primary">Saved Passwords</a>
+    </div>
+  </div>
+  <div class="card12" style="width: 300px; border-radius: 10px; border: 5px solid blue;">
+    <img src="static/istockphoto-1366554092-612x612.jpg" class="card-img-top" alt="Card Image">
+    <div class="card-body">
+      <h5 class="card-title">Add New</h5>
+      <p class="card-text">If you want to add new password clik the Button</p>
+      <a href="/Add_new" class="btn btn-primary">Add New</a>
+    </div>
+  </div>
+  <div class="card12" style="width: 300px; border-radius: 10px; border: 5px solid blue;">
+    <img src="static/istockphoto-1159281243-612x612.jpg" class="card-img-top" alt="Card Image">
+    <div class="card-body">
+      <h5 class="card-title">Manage Your Passwords</h5>
+      <p class="card-text">You can delete Your saved Password here..</p>
+      <a href="/manage" class="btn btn-primary">Manage Passwords</a>
+    </div>
+  </div>
+</div>
+{% endblock body %}
+

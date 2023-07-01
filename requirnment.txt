@@ -1,0 +1,6 @@
+flask
+sqlite3
+smtplib
+threading
+random
+pandas
